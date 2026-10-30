@@ -403,26 +403,30 @@ var CustomImportScript = (() => {
     });
     return end;
   }
+  var anchorIds = /* @__PURE__ */ new Map();
   function transform2(hookName, element, payload) {
     const template = payload && payload.template;
     const sections = template && template.sections || [];
     if (sections.length < 2) return;
     const doc = element.ownerDocument || document;
     if (hookName === "beforeTransform") {
+      anchorIds.clear();
       for (let i = sections.length - 1; i >= 0; i -= 1) {
         const section = sections[i];
         const selectors = [].concat(section.selector || []);
         const start = findStart(element, selectors);
         if (!start) continue;
-        if (section.style) {
+        if (start.id) anchorIds.set(section.id, start.id);
+        const needsMeta = section.style || anchorIds.has(section.id);
+        if (needsMeta) {
           const end = findEnd(element, selectors, start);
           const endMarker = doc.createElement("div");
           endMarker.setAttribute(END_ATTR, section.id);
           end.after(endMarker);
         }
-        if (i > 0 || section.style) {
+        if (i > 0 || needsMeta) {
           const hr = doc.createElement("hr");
-          if (section.style) hr.setAttribute(SECTION_ATTR, section.id);
+          if (needsMeta) hr.setAttribute(SECTION_ATTR, section.id);
           start.before(hr);
         }
       }
@@ -430,12 +434,16 @@ var CustomImportScript = (() => {
     if (hookName === "afterTransform") {
       for (let i = sections.length - 1; i >= 0; i -= 1) {
         const section = sections[i];
-        if (!section.style) continue;
+        const anchorId = anchorIds.get(section.id);
+        if (!section.style && !anchorId) continue;
         const hr = element.querySelector(`hr[${SECTION_ATTR}="${section.id}"]`);
         const endMarker = element.querySelector(`[${END_ATTR}="${section.id}"]`);
+        const cells = {};
+        if (section.style) cells.style = section.style;
+        if (anchorId) cells.id = anchorId;
         const metadata = WebImporter.Blocks.createBlock(doc, {
           name: "Section Metadata",
-          cells: { style: section.style }
+          cells
         });
         if (endMarker) {
           endMarker.before(metadata);

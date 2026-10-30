@@ -1,160 +1,208 @@
-import { getMetadata } from '../../scripts/aem.js';
-import { loadFragment } from '../fragment/fragment.js';
-
-// media query match that indicates mobile/tablet width
-const isDesktop = window.matchMedia('(min-width: 900px)');
-
 /**
- * Closes the open nav dropdown (desktop) or the nav menu (mobile) on Escape
- * @param {KeyboardEvent} e keydown event
+ * Fetches the nav fragment as plain HTML.
+ * Metadata-independent: /content first (local preview), then the site root (DA/EDS).
+ * @returns {Promise<HTMLElement|null>} container holding the fragment sections
  */
-function closeOnEscape(e) {
-  if (e.code === 'Escape') {
-    const nav = document.getElementById('nav');
-    const navSections = nav.querySelector('.nav-sections');
-    if (!navSections) return;
-    const navSectionExpanded = navSections.querySelector('[aria-expanded="true"]');
-    if (navSectionExpanded && isDesktop.matches) {
-      // eslint-disable-next-line no-use-before-define
-      toggleAllNavSections(navSections);
-      navSectionExpanded.focus();
-    } else if (!isDesktop.matches) {
-      // eslint-disable-next-line no-use-before-define
-      toggleMenu(nav, navSections);
-      nav.querySelector('button').focus();
-    }
-  }
+async function fetchNav() {
+  let resp = await fetch('/content/nav.plain.html');
+  if (!resp.ok) resp = await fetch('/nav.plain.html');
+  if (!resp.ok) return null;
+  const container = document.createElement('div');
+  container.innerHTML = await resp.text();
+  return container;
 }
 
 /**
- * Closes the open nav dropdown (desktop) or the nav menu (mobile) when focus leaves the nav
- * @param {FocusEvent} e focusout event
+ * Returns true when a link points at the page currently shown.
+ * @param {HTMLAnchorElement} a link
  */
-function closeOnFocusLost(e) {
-  const nav = e.currentTarget;
-  if (!nav.contains(e.relatedTarget)) {
-    const navSections = nav.querySelector('.nav-sections');
-    if (!navSections) return;
-    const navSectionExpanded = navSections.querySelector('[aria-expanded="true"]');
-    if (navSectionExpanded && isDesktop.matches) {
-      // eslint-disable-next-line no-use-before-define
-      toggleAllNavSections(navSections, false);
-    } else if (!isDesktop.matches) {
-      // eslint-disable-next-line no-use-before-define
-      toggleMenu(nav, navSections, false);
-    }
-  }
+function isSamePage(a) {
+  // local preview serves pages under /content, production at the root
+  const normalize = (path) => path.replace(/^\/content(?=\/|$)/, '').replace(/(\/index)?(\.html)?$/, '').replace(/\/$/, '') || '/';
+  const url = new URL(a.href, window.location.href);
+  return url.origin === window.location.origin
+    && normalize(url.pathname) === normalize(window.location.pathname);
 }
 
 /**
- * Toggles all nav sections
- * @param {Element} sections The container element
- * @param {Boolean|string} expanded Whether the element should be expanded or collapsed
+ * Scrolls in-page for nav links that target the current page (keeps source #hash behaviour).
+ * @param {HTMLAnchorElement} a link
  */
-function toggleAllNavSections(sections, expanded = false) {
-  if (!sections) return;
-  sections.querySelectorAll('.nav-drop > button').forEach((button) => {
-    button.setAttribute('aria-expanded', expanded);
+function decorateInPageLink(a) {
+  a.addEventListener('click', (e) => {
+    if (!isSamePage(a)) return;
+    const { hash } = new URL(a.href, window.location.href);
+    const target = hash ? document.getElementById(hash.slice(1)) : null;
+    if (hash && !target) return;
+    e.preventDefault();
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
+      window.history.replaceState(null, '', hash);
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   });
 }
 
 /**
- * Toggles the entire nav
- * @param {Element} nav The container element
- * @param {Element} navSections The nav sections within the container element
- * @param {*} forceExpanded Optional param to force nav expand behavior when not null
+ * Builds the brand section: a single text logo link.
+ * @param {Element} section fragment section
  */
-function toggleMenu(nav, navSections, forceExpanded = null) {
-  const expanded = forceExpanded !== null ? !forceExpanded : nav.getAttribute('aria-expanded') === 'true';
-  const button = nav.querySelector('.nav-hamburger button');
-  document.body.style.overflowY = (expanded || isDesktop.matches) ? '' : 'hidden';
-  // the desktop nav is always expanded, so aria-expanded only applies to the mobile menu
-  if (isDesktop.matches) nav.removeAttribute('aria-expanded');
-  else nav.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-  toggleAllNavSections(navSections, expanded || isDesktop.matches ? 'false' : 'true');
-  button.setAttribute('aria-label', expanded ? 'Open navigation' : 'Close navigation');
-
-  // enable menu collapse on escape keypress
-  if (!expanded || isDesktop.matches) {
-    // collapse menu on escape press
-    window.addEventListener('keydown', closeOnEscape);
-    // collapse menu on focus lost
-    nav.addEventListener('focusout', closeOnFocusLost);
+function buildBrand(section) {
+  const brand = document.createElement('div');
+  brand.className = 'nav-brand';
+  const link = section.querySelector('a');
+  if (link) {
+    link.className = 'nav-brand-link';
+    decorateInPageLink(link);
+    brand.append(link);
   } else {
-    window.removeEventListener('keydown', closeOnEscape);
-    nav.removeEventListener('focusout', closeOnFocusLost);
+    brand.append(...section.childNodes);
   }
+  return brand;
 }
 
 /**
- * loads and decorates the header, mainly the nav
+ * Builds the primary links section from the fragment list.
+ * @param {Element} section fragment section
+ */
+function buildSections(section) {
+  const sections = document.createElement('nav');
+  sections.className = 'nav-sections';
+  sections.setAttribute('aria-label', 'Main');
+  const list = section.querySelector('ul');
+  if (list) {
+    list.className = 'nav-list';
+    list.querySelectorAll(':scope > li').forEach((li) => {
+      li.className = 'nav-item';
+      li.querySelectorAll('a').forEach(decorateInPageLink);
+    });
+    sections.append(list);
+  }
+  return sections;
+}
+
+/**
+ * Builds the tools section: optional label paragraphs plus a CTA link.
+ * @param {Element} section fragment section
+ */
+function buildTools(section) {
+  const tools = document.createElement('div');
+  tools.className = 'nav-tools';
+  [...section.querySelectorAll(':scope > p')].forEach((p) => {
+    const link = p.querySelector('a');
+    if (link && p.textContent.trim() === link.textContent.trim()) {
+      link.className = 'nav-cta';
+      tools.append(link);
+    } else if (p.textContent.trim()) {
+      const label = document.createElement('span');
+      label.className = 'nav-label';
+      label.textContent = p.textContent.trim();
+      tools.append(label);
+    }
+  });
+  return tools;
+}
+
+/**
+ * Builds a modal dialog from a fragment section and wires every link that
+ * targets the CTA's anchor (e.g. #contact) to open it.
+ * @param {Element} section fragment section (eyebrow, heading, text, CTA link)
+ * @param {string} anchor hash that opens the dialog
+ */
+function buildDialog(section, anchor) {
+  const backdrop = document.createElement('div');
+  backdrop.className = 'nav-dialog-backdrop';
+  backdrop.setAttribute('role', 'presentation');
+  backdrop.hidden = true;
+
+  const dialog = document.createElement('div');
+  dialog.className = 'nav-dialog';
+  dialog.setAttribute('role', 'dialog');
+  dialog.setAttribute('aria-modal', 'true');
+
+  const close = document.createElement('button');
+  close.type = 'button';
+  close.className = 'nav-dialog-close';
+  close.setAttribute('aria-label', 'Close');
+  close.textContent = '×';
+  dialog.append(close);
+
+  const heading = section.querySelector('h1, h2, h3');
+  if (heading) {
+    heading.id = heading.id || 'nav-dialog-title';
+    dialog.setAttribute('aria-labelledby', heading.id);
+  }
+  [...section.children].forEach((el) => {
+    if (el.tagName === 'P' && el.nextElementSibling === heading) el.className = 'nav-dialog-eyebrow';
+    const link = el.querySelector('a');
+    if (el.tagName === 'P' && link && el.textContent.trim() === link.textContent.trim()) {
+      link.className = 'nav-dialog-cta';
+      dialog.append(link);
+      return;
+    }
+    dialog.append(el);
+  });
+  backdrop.append(dialog);
+
+  let opener = null;
+  const hide = () => {
+    backdrop.hidden = true;
+    if (opener) opener.focus();
+    opener = null;
+  };
+  const show = (trigger) => {
+    opener = trigger;
+    backdrop.hidden = false;
+    close.focus();
+  };
+
+  close.addEventListener('click', hide);
+  backdrop.addEventListener('click', (e) => {
+    if (e.target === backdrop) hide();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !backdrop.hidden) hide();
+  });
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('a[href]');
+    if (!link || backdrop.contains(link)) return;
+    const url = new URL(link.href, window.location.href);
+    if (url.hash !== anchor || !isSamePage(link)) return;
+    e.preventDefault();
+    show(link);
+  });
+
+  return backdrop;
+}
+
+/**
+ * loads and decorates the header
  * @param {Element} block The header block element
  */
 export default async function decorate(block) {
-  // load nav as fragment
-  const navMeta = getMetadata('nav');
-  const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
-  const fragment = await loadFragment(navPath);
-
-  // decorate nav DOM
+  const fragment = await fetchNav();
   block.textContent = '';
-  const nav = document.createElement('nav');
+  if (!fragment) return;
+
+  const [brandSection, linksSection, toolsSection, dialogSection] = fragment.querySelectorAll(':scope > div');
+
+  const nav = document.createElement('div');
   nav.id = 'nav';
-  while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
-
-  const classes = ['brand', 'sections', 'tools'];
-  classes.forEach((c, i) => {
-    const section = nav.children[i];
-    if (section) section.classList.add(`nav-${c}`);
-  });
-
-  const navBrand = nav.querySelector('.nav-brand');
-  const brandLink = navBrand.querySelector('.button');
-  if (brandLink) {
-    brandLink.className = '';
-    brandLink.closest('.button-container').className = '';
-  }
-
-  const navSections = nav.querySelector('.nav-sections');
-  if (navSections) {
-    navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
-      const subList = navSection.querySelector(':scope > ul');
-      if (!subList) return;
-      navSection.classList.add('nav-drop');
-      // wrap the dropdown label in a button so it is announced as expandable
-      const button = document.createElement('button');
-      button.type = 'button';
-      button.setAttribute('aria-expanded', false);
-      [...navSection.childNodes].forEach((node) => {
-        if (node !== subList) button.append(node);
-      });
-      navSection.prepend(button);
-      button.addEventListener('click', () => {
-        const expanded = button.getAttribute('aria-expanded') === 'true';
-        if (isDesktop.matches) {
-          button.focus();
-          toggleAllNavSections(navSections);
-        }
-        button.setAttribute('aria-expanded', !expanded);
-      });
-    });
-  }
-
-  // hamburger for mobile
-  const hamburger = document.createElement('div');
-  hamburger.classList.add('nav-hamburger');
-  hamburger.innerHTML = `<button type="button" aria-controls="nav" aria-label="Open navigation">
-      <span class="nav-hamburger-icon"></span>
-    </button>`;
-  hamburger.addEventListener('click', () => toggleMenu(nav, navSections));
-  nav.prepend(hamburger);
-  nav.setAttribute('aria-expanded', 'false');
-  // prevent mobile nav behavior on window resize
-  toggleMenu(nav, navSections, isDesktop.matches);
-  isDesktop.addEventListener('change', () => toggleMenu(nav, navSections, isDesktop.matches));
+  nav.className = 'nav-bar';
+  if (brandSection) nav.append(buildBrand(brandSection));
+  if (linksSection) nav.append(buildSections(linksSection));
+  if (toolsSection) nav.append(buildTools(toolsSection));
 
   const navWrapper = document.createElement('div');
   navWrapper.className = 'nav-wrapper';
   navWrapper.append(nav);
   block.append(navWrapper);
+
+  const cta = nav.querySelector('.nav-cta');
+  const anchor = cta ? new URL(cta.href, window.location.href).hash : '';
+  if (dialogSection && anchor) {
+    // the dialog sits outside the sticky header so its fixed backdrop covers the page
+    document.body.append(buildDialog(dialogSection, anchor));
+  }
 }

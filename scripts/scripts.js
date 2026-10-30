@@ -122,6 +122,9 @@ function decorateSectionMetadata(main) {
           .map((style) => toClassName(style.trim()))
           .filter(Boolean)
           .forEach((style) => section.classList.add(style));
+      } else if (key === 'id') {
+        // in-page anchor target, e.g. /#destinations
+        section.id = toClassName(meta.id);
       } else {
         section.dataset[toCamelCase(key)] = meta[key];
       }

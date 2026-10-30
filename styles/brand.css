@@ -57,12 +57,13 @@
   --transition-base: 0.22s;
 
   /* nav height */
-  --nav-height: 88px;
+  --nav-height: 72px;
 }
 
 @media (width >= 600px) {
   :root {
     --section-padding: clamp(76px, 8vw, 114px);
+    --nav-height: 88px;
   }
 }
 
