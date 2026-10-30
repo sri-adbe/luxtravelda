@@ -252,6 +252,11 @@ main > .section {
   padding: var(--section-padding) var(--section-gutter);
 }
 
+/* a section left empty (e.g. once the metadata block is lifted into <head>) takes no space */
+main > .section:empty {
+  display: none;
+}
+
 main > .section > div {
   max-width: var(--content-max-width);
   margin: 0 auto;
