@@ -16,12 +16,15 @@ async function fetchNav() {
  * Returns true when a link points at the page currently shown.
  * @param {HTMLAnchorElement} a link
  */
-function isSamePage(a) {
+function normalizePath(path) {
   // local preview serves pages under /content, production at the root
-  const normalize = (path) => path.replace(/^\/content(?=\/|$)/, '').replace(/(\/index)?(\.html)?$/, '').replace(/\/$/, '') || '/';
+  return path.replace(/^\/content(?=\/|$)/, '').replace(/(\/index)?(\.html)?$/, '').replace(/\/$/, '') || '/';
+}
+
+function isSamePage(a) {
   const url = new URL(a.href, window.location.href);
   return url.origin === window.location.origin
-    && normalize(url.pathname) === normalize(window.location.pathname);
+    && normalizePath(url.pathname) === normalizePath(window.location.pathname);
 }
 
 /**
@@ -105,12 +108,12 @@ function buildTools(section) {
 }
 
 /**
- * Builds a modal dialog from a fragment section and wires every link that
- * targets the CTA's anchor (e.g. #contact) to open it.
+ * Builds a modal dialog from a fragment section and wires every link to it
+ * (e.g. "/contact", or the older "#contact" form) to open it.
  * @param {Element} section fragment section (eyebrow, heading, text, CTA link)
- * @param {string} anchor hash that opens the dialog
+ * @param {string} name dialog name taken from the header CTA link
  */
-function buildDialog(section, anchor) {
+function buildDialog(section, name) {
   const backdrop = document.createElement('div');
   backdrop.className = 'nav-dialog-backdrop';
   backdrop.setAttribute('role', 'presentation');
@@ -176,9 +179,10 @@ function buildDialog(section, anchor) {
     const link = e.target.closest('a[href]');
     if (!link || backdrop.contains(link)) return;
     const url = new URL(link.href, window.location.href);
-    // any same-site link to the anchor opens the dialog, whatever its path
-    // ("#contact" or "/#contact"; the DA editor rewrites hash-only links on save)
-    if (url.hash !== anchor || url.origin !== window.location.origin) return;
+    // a plain path ("/contact") survives DA editing; hash forms are still honoured
+    const opensDialog = url.origin === window.location.origin
+      && (normalizePath(url.pathname) === `/${name}` || url.hash === `#${name}`);
+    if (!opensDialog) return;
     e.preventDefault();
     show(link);
   });
@@ -209,10 +213,12 @@ export default async function decorate(block) {
   navWrapper.append(nav);
   block.append(navWrapper);
 
+  // the header CTA names the dialog: "/contact" (or "#contact") -> "contact"
   const cta = nav.querySelector('.nav-cta');
-  const anchor = cta ? new URL(cta.href, window.location.href).hash : '';
-  if (dialogSection && anchor) {
+  const target = cta ? new URL(cta.href, window.location.href) : null;
+  const name = target && (target.hash.slice(1) || normalizePath(target.pathname).split('/').pop());
+  if (dialogSection && name) {
     // the dialog sits outside the sticky header so its fixed backdrop covers the page
-    document.body.append(buildDialog(dialogSection, anchor));
+    document.body.append(buildDialog(dialogSection, name));
   }
 }
