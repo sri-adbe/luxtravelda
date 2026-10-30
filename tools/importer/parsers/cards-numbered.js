@@ -28,6 +28,17 @@ export default function parse(element, { document }) {
         content.push(p);
       }
 
+      // Destination cards carry a small icon beside the title: emit it as an image-only paragraph.
+      const icon = card.querySelector('.amalfi-card-header img');
+      if (icon && icon.getAttribute('src')) {
+        const p = document.createElement('p');
+        const img = document.createElement('img');
+        img.src = icon.getAttribute('src');
+        img.alt = icon.getAttribute('alt') || '';
+        p.append(img);
+        content.push(p);
+      }
+
       // Destination cards use span.amalfi-card-title as the title: emit as H3.
       const heading = card.querySelector('h1, h2, h3, h4') || card.querySelector('.amalfi-card-title');
       if (heading && heading.textContent.trim()) {

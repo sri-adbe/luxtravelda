@@ -126,3 +126,44 @@ main .hero-cta-banner .hero-cta-banner-cta a:focus-visible {
     min-height: 410px;
   }
 }
+
+/* destination template (source .amalfi-cta-section) */
+body.destination .hero-cta-banner {
+  min-height: 480px;
+  padding: clamp(80px, 11vw, 160px) var(--section-gutter);
+}
+
+body.destination .hero-cta-banner .hero-cta-banner-content {
+  gap: 40px;
+  width: 100%;
+}
+
+body.destination .hero-cta-banner .hero-cta-banner-eyebrow {
+  font-size: 12px;
+  line-height: 1.5;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+body.destination .hero-cta-banner h2 {
+  margin: 0;
+  font-size: clamp(42px, 5vw, 60px);
+  letter-spacing: normal;
+  line-height: 1.15;
+}
+
+body.destination main .hero-cta-banner .hero-cta-banner-cta a:any-link {
+  border: 0;
+  padding: 16px 32px;
+  color: var(--color-white);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  line-height: 1.5;
+}
+
+/* note sits 24px under the CTA (content gap is 40px) */
+body.destination .hero-cta-banner .hero-cta-banner-note {
+  max-width: 620px;
+  margin: -16px 0 0;
+  font-size: 13px;
+}

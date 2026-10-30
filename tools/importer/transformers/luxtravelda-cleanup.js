@@ -9,8 +9,8 @@
  * Destination pages (template "destinations", .amalfi-* markup):
  * - Removes decorative images: img.amalfi-dash (eyebrow dashes),
  *   .amalfi-rule-wrap (accent rules), the divider <img> directly inside
- *   .amalfi-flex-banner, the icon <img> inside .amalfi-card-header and the
- *   standalone decorative <img> directly inside article.amalfi-card.
+ *   .amalfi-flex-banner and the standalone decorative <img> directly inside
+ *   article.amalfi-card (the card-header icon is kept: it is card content).
  * - Converts every div.amalfi-eyebrow into <p class="amalfi-eyebrow">text</p>
  *   (in place, so parsers can still select `.amalfi-eyebrow`).
  * All destination rules are scoped to .amalfi-* selectors, so the home
@@ -35,7 +35,6 @@ export default function transform(hookName, element, payload) {
       'img.amalfi-dash',
       '.amalfi-rule-wrap',
       '.amalfi-flex-banner > img',
-      '.amalfi-card-header img',
       'article.amalfi-card > img',
     ]);
 

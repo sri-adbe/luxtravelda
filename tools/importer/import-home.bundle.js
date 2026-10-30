@@ -221,6 +221,15 @@ var CustomImportScript = (() => {
         p.textContent = num.textContent.trim();
         content.push(p);
       }
+      const icon = card.querySelector(".amalfi-card-header img");
+      if (icon && icon.getAttribute("src")) {
+        const p = document2.createElement("p");
+        const img = document2.createElement("img");
+        img.src = icon.getAttribute("src");
+        img.alt = icon.getAttribute("alt") || "";
+        p.append(img);
+        content.push(p);
+      }
       const heading = card.querySelector("h1, h2, h3, h4") || card.querySelector(".amalfi-card-title");
       if (heading && heading.textContent.trim()) {
         const tag = /^H[1-4]$/.test(heading.tagName) ? heading.tagName.toLowerCase() : "h3";
@@ -336,7 +345,6 @@ var CustomImportScript = (() => {
         "img.amalfi-dash",
         ".amalfi-rule-wrap",
         ".amalfi-flex-banner > img",
-        ".amalfi-card-header img",
         "article.amalfi-card > img"
       ]);
       const doc = element.ownerDocument || document;

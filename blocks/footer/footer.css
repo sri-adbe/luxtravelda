@@ -98,3 +98,57 @@ footer .footer .footer-bottom-item {
     margin-top: 86px;
   }
 }
+
+/* destination template footer (source: Amalfi page footer) */
+body.destination footer {
+  border-top: 1px solid var(--color-rule);
+}
+
+body.destination footer .footer .footer-col > .footer-brand-text {
+  color: var(--color-rust);
+  font-family: var(--heading-font-family);
+  font-size: 36px;
+  line-height: 1.5;
+  letter-spacing: 0.015em;
+  text-transform: uppercase;
+}
+
+body.destination footer .footer .footer-label strong,
+body.destination footer .footer .footer-label b {
+  font-size: 12px;
+}
+
+body.destination footer .footer .footer-col > .footer-text {
+  margin-top: 16px;
+  color: var(--text-color);
+  font-size: var(--body-font-size-s);
+  line-height: 1.6;
+}
+
+body.destination footer .footer .footer-col > .footer-brand + .footer-text {
+  margin-top: 19px;
+  color: var(--color-muted);
+}
+
+/* city line in the serif, as on the source */
+body.destination footer .footer .footer-col:nth-child(2) > .footer-text {
+  font-family: var(--heading-font-family);
+  font-size: 18px;
+}
+
+/* full-width divider 64px under the columns, 24px above the bottom row;
+   it keeps the source graphic's 1280:1 proportions */
+body.destination footer .footer .footer-bottom {
+  position: relative;
+  margin-top: calc(88px + 100% / 1280);
+}
+
+body.destination footer .footer .footer-bottom::before {
+  content: '';
+  position: absolute;
+  bottom: calc(100% + 24px);
+  left: 0;
+  width: 100%;
+  aspect-ratio: 1280 / 1;
+  background: var(--color-rule);
+}

@@ -236,7 +236,10 @@ export default {
     executeTransformers('afterTransform', main, payload);
 
     main.appendChild(document.createElement('hr'));
-    WebImporter.rules.createMetadata(main, document);
+    // page metadata plus the template, so destination pages get body.destination styling
+    const meta = WebImporter.Blocks.getMetadata(document) || {};
+    meta.template = 'destination';
+    main.append(WebImporter.Blocks.getMetadataBlock(document, meta));
     WebImporter.rules.transformBackgroundImages(main, document);
     WebImporter.rules.adjustImageUrls(main, url, params.originalURL);
 

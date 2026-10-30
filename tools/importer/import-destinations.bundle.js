@@ -167,6 +167,15 @@ var CustomImportScript = (() => {
         p.textContent = num.textContent.trim();
         content.push(p);
       }
+      const icon = card.querySelector(".amalfi-card-header img");
+      if (icon && icon.getAttribute("src")) {
+        const p = document2.createElement("p");
+        const img = document2.createElement("img");
+        img.src = icon.getAttribute("src");
+        img.alt = icon.getAttribute("alt") || "";
+        p.append(img);
+        content.push(p);
+      }
       const heading = card.querySelector("h1, h2, h3, h4") || card.querySelector(".amalfi-card-title");
       if (heading && heading.textContent.trim()) {
         const tag = /^H[1-4]$/.test(heading.tagName) ? heading.tagName.toLowerCase() : "h3";
@@ -345,7 +354,6 @@ var CustomImportScript = (() => {
         "img.amalfi-dash",
         ".amalfi-rule-wrap",
         ".amalfi-flex-banner > img",
-        ".amalfi-card-header img",
         "article.amalfi-card > img"
       ]);
       const doc = element.ownerDocument || document;
@@ -691,7 +699,9 @@ var CustomImportScript = (() => {
       });
       executeTransformers("afterTransform", main, payload);
       main.appendChild(document2.createElement("hr"));
-      WebImporter.rules.createMetadata(main, document2);
+      const meta = WebImporter.Blocks.getMetadata(document2) || {};
+      meta.template = "destination";
+      main.append(WebImporter.Blocks.getMetadataBlock(document2, meta));
       WebImporter.rules.transformBackgroundImages(main, document2);
       WebImporter.rules.adjustImageUrls(main, url, params.originalURL);
       const rawPath = new URL(params.originalURL).pathname.replace(/\/$/, "").replace(/\.html?$/, "");

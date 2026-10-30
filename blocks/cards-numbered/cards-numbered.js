@@ -40,6 +40,16 @@ export default function decorate(block) {
       }
     });
 
+    // an icon beside the title: group both into a header row
+    const icon = body.querySelector(':scope > .cards-numbered-card-icon');
+    const title = body.querySelector(':scope > :is(h1, h2, h3, h4, h5, h6)');
+    if (icon && title) {
+      const header = document.createElement('div');
+      header.className = 'cards-numbered-card-header';
+      title.before(header);
+      header.append(title, icon);
+    }
+
     li.append(body);
     ul.append(li);
   });

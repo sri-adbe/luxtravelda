@@ -93,3 +93,53 @@
     height: 350px;
   }
 }
+
+/* destination template (source .amalfi-acc-grid) */
+/* stylelint-disable no-descending-specificity -- overrides scoped to the destination template */
+body.destination .cards-landscape > ul {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 32px;
+}
+
+body.destination .cards-landscape > ul > li,
+body.destination .cards-landscape .cards-landscape-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+body.destination .cards-landscape .cards-landscape-card-image,
+body.destination .cards-landscape .cards-landscape-card-image img {
+  border-radius: var(--radius-l);
+}
+
+body.destination .cards-landscape .cards-landscape-card-image img {
+  height: 260px;
+}
+
+body.destination .cards-landscape .cards-landscape-card-body > *,
+body.destination .cards-landscape .cards-landscape-card-body > :first-child,
+body.destination .cards-landscape .cards-landscape-card-body > :is(h2, h3, h4):first-child {
+  margin: 0;
+}
+
+body.destination .cards-landscape .cards-landscape-card-body :is(h2, h3, h4) {
+  font-size: 32px;
+  letter-spacing: normal;
+  line-height: 1.5;
+}
+
+body.destination .cards-landscape .cards-landscape-card-body > p:not(.cards-landscape-card-eyebrow) {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+@media (width >= 900px) {
+  body.destination .cards-landscape > ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  body.destination .cards-landscape .cards-landscape-card-image img {
+    height: 400px;
+  }
+}

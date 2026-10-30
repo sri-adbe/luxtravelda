@@ -68,3 +68,38 @@
     gap: 56px;
   }
 }
+
+/* destination template (source .amalfi-section-head) */
+body.destination .columns-intro .columns-intro-eyebrow {
+  font-size: 12px;
+  line-height: 1.5;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+body.destination .columns-intro .columns-intro-main h2 {
+  margin: 16px 0 0;
+  font-size: clamp(38px, 4.5vw, 56px);
+  letter-spacing: normal;
+  line-height: 1.5;
+}
+
+body.destination .columns-intro .columns-intro-aside {
+  flex-shrink: 0;
+  max-width: 400px;
+}
+
+body.destination .columns-intro .columns-intro-aside p {
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+body.destination .columns-intro .columns-intro-row {
+  gap: 16px;
+}
+
+@media (width >= 900px) {
+  body.destination .columns-intro .columns-intro-row {
+    gap: 48px;
+  }
+}
