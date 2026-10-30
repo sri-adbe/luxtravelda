@@ -56,6 +56,13 @@ export default function decorate(block) {
   block.replaceChildren();
   if (media.querySelector('picture')) {
     optimizePictures(media);
+    // a hero in the first section holds the LCP image: load it first
+    const section = block.closest('.section');
+    if (section && !section.previousElementSibling) {
+      const img = media.querySelector('img');
+      img.loading = 'eager';
+      img.fetchPriority = 'high';
+    }
     block.append(media);
     block.classList.add('hero-overlay-has-media');
   }

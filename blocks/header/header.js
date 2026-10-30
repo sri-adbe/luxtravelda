@@ -146,13 +146,21 @@ function buildDialog(section, anchor) {
   backdrop.append(dialog);
 
   let opener = null;
+  // modal: keep keyboard and screen-reader focus inside the dialog while it is open
+  const setPageInert = (inert) => {
+    document.querySelectorAll('body > header, body > main, body > footer').forEach((el) => {
+      el.inert = inert;
+    });
+  };
   const hide = () => {
     backdrop.hidden = true;
+    setPageInert(false);
     if (opener) opener.focus();
     opener = null;
   };
   const show = (trigger) => {
     opener = trigger;
+    setPageInert(true);
     backdrop.hidden = false;
     close.focus();
   };
