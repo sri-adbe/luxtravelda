@@ -176,7 +176,9 @@ function buildDialog(section, anchor) {
     const link = e.target.closest('a[href]');
     if (!link || backdrop.contains(link)) return;
     const url = new URL(link.href, window.location.href);
-    if (url.hash !== anchor || !isSamePage(link)) return;
+    // any same-site link to the anchor opens the dialog, whatever its path
+    // ("#contact" or "/#contact"; the DA editor rewrites hash-only links on save)
+    if (url.hash !== anchor || url.origin !== window.location.origin) return;
     e.preventDefault();
     show(link);
   });
