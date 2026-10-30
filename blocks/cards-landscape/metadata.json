@@ -1,0 +1,59 @@
+{
+  "variantName": "cards-landscape",
+  "baseBlock": "cards",
+  "canonicalModel": "collection",
+  "visualCharacteristics": {
+    "purpose": "Frameless 2-up grid of large rounded landscape images with country eyebrow, title and one-line description",
+    "description": "No card chrome; large rounded landscape image (approx. 16:10) with country eyebrow, serif H3 and one-line description beneath; 2-up. Differs from cards-profile in image scale, column count and missing card frame. Candidate for the destinations template card grids."
+  },
+  "contentPattern": {
+    "structure": "cell 1 landscape image; cell 2 country eyebrow paragraph, H3 title (optionally linked to a detail page), description paragraph",
+    "description": "Look-alike destination items that wrap (2x2) and link to detail pages (/destinations/amalfi-coast); a dynamic list: Cards."
+  },
+  "options": [],
+  "memberVariantIds": [
+    "cards-landscape"
+  ],
+  "usage": {
+    "description": "Destination grid (\"The Canvas of Your Exploration\"); candidate for destinations template card grids.",
+    "pagesUsing": [
+      "/index",
+      "/destinations/amalfi-coast"
+    ],
+    "reuseCount": 1,
+    "lastUsed": "2026-10-30"
+  },
+  "reuseGuidance": "Use for destination or place tiles linking to detail pages. A linked title also links the image.",
+  "sourceUrl": "https://speak-salsa-30519598.figma.site/",
+  "blockStructure": {
+    "source": "get_block_examples /block-collection/cards",
+    "usedBy": [
+      "cards-profile",
+      "cards-landscape",
+      "cards-numbered"
+    ],
+    "withImages": {
+      "columns": 2,
+      "rowPerItem": true,
+      "cells": [
+        "Image",
+        "Eyebrow paragraph (place/country), H3 title, description paragraph, optional CTA link"
+      ],
+      "usedBy": [
+        "cards-profile",
+        "cards-landscape"
+      ],
+      "notes": "cards-profile CTA 'Meet Jim ->' etc. (no href in source). cards-landscape: Amalfi Coast item links to /destinations/amalfi-coast (link on title); others unlinked."
+    },
+    "noImages": {
+      "columns": 1,
+      "rowPerItem": true,
+      "cells": [
+        "Number paragraph (01), H3 title, description paragraph, arrow link to #contact"
+      ],
+      "usedBy": [
+        "cards-numbered"
+      ]
+    }
+  }
+}

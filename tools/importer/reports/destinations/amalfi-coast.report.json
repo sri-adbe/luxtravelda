@@ -1,0 +1,19 @@
+{
+  "status": "success",
+  "url": "https://speak-salsa-30519598.figma.site/destinations/amalfi-coast",
+  "path": "destinations/amalfi-coast",
+  "timestamp": "2026-10-30T21:01:07.393Z",
+  "title": "Figma Make App",
+  "template": "destinations",
+  "blocks": [
+    "hero-overlay",
+    "columns-media",
+    "columns-intro",
+    "columns-intro",
+    "cards-numbered",
+    "cards-landscape",
+    "columns-panel",
+    "cards-gallery",
+    "hero-cta-banner"
+  ]
+}

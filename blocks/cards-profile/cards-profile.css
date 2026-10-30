@@ -1,0 +1,128 @@
+/* cards-profile: source .curator-grid (Figma "SemiBold" labels map to weight 600) */
+.cards-profile > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.cards-profile > ul > li {
+  padding: 10px 10px 18px;
+  background-color: var(--color-cream);
+  color: var(--text-color);
+  font-size: var(--body-font-size-m);
+  line-height: 1.5;
+}
+
+.cards-profile .cards-profile-card-image {
+  line-height: 0;
+}
+
+.cards-profile .cards-profile-card-image img {
+  display: block;
+  width: 100%;
+  height: 258px;
+  object-fit: cover;
+  border-radius: var(--radius-s);
+}
+
+.cards-profile .cards-profile-card-body {
+  padding: 2px 9px;
+}
+
+.cards-profile .cards-profile-card-body p {
+  margin: 0 0 15px;
+  color: var(--color-muted);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.cards-profile .cards-profile-card-body :is(h1, h2, h3, h4, h5, h6) {
+  margin: 0 0 8px;
+  color: var(--text-color);
+  font-family: var(--heading-font-family);
+  font-size: 28px;
+  font-weight: 400;
+  letter-spacing: normal;
+  line-height: 1;
+}
+
+.cards-profile .cards-profile-card-body p.cards-profile-card-eyebrow {
+  margin: 16px 0 7px;
+  color: var(--color-terracotta);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.075em;
+  text-transform: uppercase;
+}
+
+/* the CTA line keeps the 16px / 24px body line box, as on the source */
+.cards-profile .cards-profile-card-body p.cards-profile-card-cta {
+  margin: 0;
+  font-size: var(--body-font-size-m);
+  line-height: 1.5;
+}
+
+/* zero-width text keeps that line box in quirks-mode renders as well */
+.cards-profile .cards-profile-card-body p.cards-profile-card-cta::before {
+  content: '\200b';
+}
+
+.cards-profile .cards-profile-card-cta a:any-link {
+  display: inline-block;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--color-terracotta);
+  font-family: var(--body-font-family);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.cards-profile .cards-profile-card-cta a::after {
+  content: '\00a0\2192';
+  margin-left: 8px;
+}
+
+/* scroll reveal (source .sr / .sr-in, staggered .sr-d1 to .sr-d3) */
+.cards-profile > ul > li.cards-profile-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 0.6, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 0.6, 0.36, 1);
+  transition-delay: 80ms;
+}
+
+.cards-profile > ul > li.cards-profile-reveal:nth-child(3n + 2) {
+  transition-delay: 0.18s;
+}
+
+.cards-profile > ul > li.cards-profile-reveal:nth-child(3n) {
+  transition-delay: 0.28s;
+}
+
+.cards-profile > ul > li.cards-profile-reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cards-profile > ul > li.cards-profile-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* source collapses to one column at width <= 600px */
+@media (width > 600px) {
+  .cards-profile > ul {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

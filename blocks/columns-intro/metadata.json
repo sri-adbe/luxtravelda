@@ -1,0 +1,52 @@
+{
+  "variantName": "columns-intro",
+  "baseBlock": "columns",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "Section head: eyebrow and large H2 on the left, short intro paragraph aligned bottom on the right",
+    "description": "Section-head layout: wide left column with small accent-ruled eyebrow and large serif H2, narrow right column with small intro text aligned to the bottom. Same pattern in Destinations, Testimonials and on the destinations template (div.amalfi-section-head)."
+  },
+  "contentPattern": {
+    "structure": "one row, two cells: cell 1 eyebrow paragraph + H2; cell 2 intro paragraph",
+    "description": "Fixed pair of different content side by side (eyebrow + H2 on the left, intro paragraph on the right) that never wraps: Columns. Same section-head side-by-side layout as rc2-s1."
+  },
+  "options": [],
+  "memberVariantIds": [
+    "columns-intro"
+  ],
+  "usage": {
+    "description": "Section heads for Architects, Destinations and Testimonials sections, and on the destinations template (amalfi-section-head).",
+    "pagesUsing": [
+      "/index",
+      "/destinations/amalfi-coast"
+    ],
+    "reuseCount": 1,
+    "lastUsed": "2026-10-30"
+  },
+  "reuseGuidance": "Use whenever a section opens with a heading on the left and a short supporting note on the right. Centered single-heading section heads stay default content.",
+  "sourceUrl": "https://speak-salsa-30519598.figma.site/",
+  "blockStructure": {
+    "source": "get_block_details /block-collection/columns",
+    "usedBy": [
+      "columns-intro"
+    ],
+    "columns": 2,
+    "rows": [
+      {
+        "row": 1,
+        "cells": [
+          "Eyebrow paragraph + H2",
+          "Intro paragraph"
+        ]
+      }
+    ]
+  },
+  "sectionMetadata": [
+    {
+      "style": "tan"
+    },
+    {
+      "style": "quote-row"
+    }
+  ]
+}

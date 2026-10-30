@@ -1,0 +1,95 @@
+/* cards-landscape: source .destination-grid / .destination */
+.cards-landscape > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 38px 24px;
+}
+
+.cards-landscape > ul > li {
+  min-width: 0;
+}
+
+.cards-landscape .cards-landscape-card-image {
+  overflow: hidden;
+  border-radius: var(--radius-m);
+  line-height: 0;
+}
+
+.cards-landscape .cards-landscape-card-image a {
+  display: block;
+}
+
+.cards-landscape .cards-landscape-card-image picture {
+  display: block;
+}
+
+.cards-landscape .cards-landscape-card-image img {
+  display: block;
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  border-radius: var(--radius-m);
+  transition: transform 0.45s;
+}
+
+.cards-landscape > ul > li:hover .cards-landscape-card-image img {
+  transform: scale(1.025);
+}
+
+.cards-landscape .cards-landscape-card-body > * {
+  margin: 0;
+}
+
+.cards-landscape .cards-landscape-card-body > :first-child {
+  margin-top: 16px;
+}
+
+.cards-landscape .cards-landscape-card-body p.cards-landscape-card-eyebrow {
+  margin: 16px 0 7px;
+  color: var(--accent-color);
+  font-family: var(--body-font-family);
+  font-size: 9px;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0.075em;
+  text-transform: uppercase;
+}
+
+.cards-landscape .cards-landscape-card-body :is(h2, h3, h4) {
+  margin: 0 0 9px;
+  color: var(--text-color);
+  font-size: 31px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.cards-landscape .cards-landscape-card-body > :is(h2, h3, h4):first-child {
+  margin-top: 16px;
+}
+
+.cards-landscape .cards-landscape-card-body :is(h2, h3, h4) a:any-link {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.cards-landscape .cards-landscape-card-body > p:not(.cards-landscape-card-eyebrow) {
+  color: var(--text-muted-color);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+@media (width >= 600px) {
+  .cards-landscape > ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (width >= 900px) {
+  .cards-landscape .cards-landscape-card-image img {
+    height: 350px;
+  }
+}

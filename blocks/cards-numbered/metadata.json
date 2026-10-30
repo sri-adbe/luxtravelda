@@ -1,0 +1,64 @@
+{
+  "variantName": "cards-numbered",
+  "baseBlock": "cards",
+  "canonicalModel": "collection",
+  "visualCharacteristics": {
+    "purpose": "Image-less 4-up service cards with accent number, arrow link, title and short text",
+    "description": "Image-less white cards, 4-up, with a small accent number (01-04) at top left, arrow-icon link at top right, serif H3 and short text. The number stays a paragraph, not a heading."
+  },
+  "contentPattern": {
+    "structure": "one cell: number paragraph (e.g. 01), H3 title, description paragraph, arrow link",
+    "description": "Four look-alike text items (number, title, text, link) in a wrapping grid: Cards (no images content model)."
+  },
+  "options": [],
+  "memberVariantIds": [
+    "cards-numbered"
+  ],
+  "usage": {
+    "description": "Services grid (\"An Orbit of Impeccable Standards\").",
+    "pagesUsing": [
+      "/index",
+      "/destinations/amalfi-coast"
+    ],
+    "reuseCount": 1,
+    "lastUsed": "2026-10-30"
+  },
+  "reuseGuidance": "Use for numbered feature/service lists without images. The number stays a paragraph, not a heading.",
+  "sourceUrl": "https://speak-salsa-30519598.figma.site/",
+  "blockStructure": {
+    "source": "get_block_examples /block-collection/cards",
+    "usedBy": [
+      "cards-profile",
+      "cards-landscape",
+      "cards-numbered"
+    ],
+    "withImages": {
+      "columns": 2,
+      "rowPerItem": true,
+      "cells": [
+        "Image",
+        "Eyebrow paragraph (place/country), H3 title, description paragraph, optional CTA link"
+      ],
+      "usedBy": [
+        "cards-profile",
+        "cards-landscape"
+      ],
+      "notes": "cards-profile CTA 'Meet Jim ->' etc. (no href in source). cards-landscape: Amalfi Coast item links to /destinations/amalfi-coast (link on title); others unlinked."
+    },
+    "noImages": {
+      "columns": 1,
+      "rowPerItem": true,
+      "cells": [
+        "Number paragraph (01), H3 title, description paragraph, arrow link to #contact"
+      ],
+      "usedBy": [
+        "cards-numbered"
+      ]
+    }
+  },
+  "sectionMetadata": [
+    {
+      "style": "tan, centered"
+    }
+  ]
+}

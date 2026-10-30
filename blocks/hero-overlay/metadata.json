@@ -1,0 +1,50 @@
+{
+  "variantName": "hero-overlay",
+  "baseBlock": "hero",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "Top-of-page hero with a full-bleed photo, dark overlay and centered H1, italic subline and CTA",
+    "description": "Full-viewport-width photo with a dark overlay and large centered H1, italic subline and button. Reusable for the destination hero (section.amalfi-hero)."
+  },
+  "contentPattern": {
+    "structure": "row 1 (optional): background image; row 2: H1 headline, subline paragraph, CTA link",
+    "description": "Full-bleed background photo with overlaid headline, subline and CTA: a hero. The photo background belongs to the block."
+  },
+  "options": [],
+  "memberVariantIds": [
+    "hero-overlay"
+  ],
+  "usage": {
+    "description": "First section of the homepage and destination pages (amalfi-hero).",
+    "pagesUsing": [
+      "/index",
+      "/destinations/amalfi-coast"
+    ],
+    "reuseCount": 1,
+    "lastUsed": "2026-10-30"
+  },
+  "reuseGuidance": "Use for any full-bleed photo hero with light text over a dark overlay. For a short pale-washed closing banner use hero-cta-banner.",
+  "sourceUrl": "https://speak-salsa-30519598.figma.site/",
+  "blockStructure": {
+    "source": "get_block_details /block-collection/hero",
+    "usedBy": [
+      "hero-overlay",
+      "hero-cta-banner"
+    ],
+    "columns": 1,
+    "rows": [
+      {
+        "row": 1,
+        "cells": [
+          "Background image (optional)"
+        ]
+      },
+      {
+        "row": 2,
+        "cells": [
+          "Eyebrow paragraph (optional), Title heading (H1 for top hero, H2 for closing), subheading paragraph, CTA link (buttons have no href in source; use link), optional note paragraph"
+        ]
+      }
+    ]
+  }
+}

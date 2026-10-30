@@ -1,0 +1,56 @@
+{
+  "variantName": "cards-profile",
+  "baseBlock": "cards",
+  "canonicalModel": "collection",
+  "visualCharacteristics": {
+    "purpose": "Grid of padded profile cards with inset portrait, location eyebrow, name, bio and arrow link (3-up)",
+    "description": "Padded white card with inset portrait image (4:3), small uppercase location eyebrow, serif name, short bio and small uppercase arrow link; 3-up."
+  },
+  "contentPattern": {
+    "structure": "cell 1 portrait image; cell 2 location eyebrow paragraph, H3 name, bio paragraph, CTA link",
+    "description": "Repeating look-alike profile items (image, place, name, bio, CTA) that flow in a grid: Cards."
+  },
+  "options": [],
+  "memberVariantIds": [
+    "cards-profile"
+  ],
+  "usage": "Curator/advisor profile grid (\"The Architects of Your Journey\").",
+  "reuseGuidance": "Use for people or profile items with a framed card and CTA. Frameless destination tiles use cards-landscape.",
+  "sourceUrl": "https://speak-salsa-30519598.figma.site/",
+  "blockStructure": {
+    "source": "get_block_examples /block-collection/cards",
+    "usedBy": [
+      "cards-profile",
+      "cards-landscape",
+      "cards-numbered"
+    ],
+    "withImages": {
+      "columns": 2,
+      "rowPerItem": true,
+      "cells": [
+        "Image",
+        "Eyebrow paragraph (place/country), H3 title, description paragraph, optional CTA link"
+      ],
+      "usedBy": [
+        "cards-profile",
+        "cards-landscape"
+      ],
+      "notes": "cards-profile CTA 'Meet Jim ->' etc. (no href in source). cards-landscape: Amalfi Coast item links to /destinations/amalfi-coast (link on title); others unlinked."
+    },
+    "noImages": {
+      "columns": 1,
+      "rowPerItem": true,
+      "cells": [
+        "Number paragraph (01), H3 title, description paragraph, arrow link to #contact"
+      ],
+      "usedBy": [
+        "cards-numbered"
+      ]
+    }
+  },
+  "sectionMetadata": [
+    {
+      "style": "tan"
+    }
+  ]
+}

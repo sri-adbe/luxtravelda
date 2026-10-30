@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "url": "https://speak-salsa-30519598.figma.site/",
+  "path": "index",
+  "timestamp": "2026-10-30T21:00:58.804Z",
+  "title": "Figma Make App",
+  "template": "home",
+  "blocks": [
+    "hero-overlay",
+    "columns-intro",
+    "columns-intro",
+    "columns-intro",
+    "cards-profile",
+    "cards-landscape",
+    "cards-numbered",
+    "quote-card",
+    "quote-card",
+    "quote-card",
+    "hero-cta-banner"
+  ]
+}

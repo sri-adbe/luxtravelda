@@ -1,0 +1,52 @@
+/* source: .amalfi-gallery-grid (1 column, 24px gap; 3 columns above 900px) */
+.cards-gallery > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+/* source: .amalfi-gallery-img-wrap (16px radius, clipped; 260px tall on mobile) */
+.cards-gallery .cards-gallery-card-image {
+  border-radius: var(--radius-m);
+  overflow: hidden;
+  line-height: 0;
+}
+
+.cards-gallery .cards-gallery-card-image p {
+  margin: 0;
+}
+
+.cards-gallery .cards-gallery-card-image picture {
+  display: block;
+}
+
+/* source: .amalfi-gallery-img (cover) */
+.cards-gallery .cards-gallery-card-image img {
+  display: block;
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+}
+
+/* optional caption cell if an author adds one */
+.cards-gallery .cards-gallery-card-body {
+  padding-top: 12px;
+  font-size: var(--body-font-size-xs);
+}
+
+.cards-gallery .cards-gallery-card-body > * {
+  margin: 0;
+}
+
+@media (width >= 900px) {
+  .cards-gallery > ul {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .cards-gallery .cards-gallery-card-image img {
+    height: 360px;
+  }
+}

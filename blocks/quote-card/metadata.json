@@ -1,0 +1,51 @@
+{
+  "variantName": "quote-card",
+  "baseBlock": "quote",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "Thin-bordered box with serif quotation and small uppercase attribution with leading dash",
+    "description": "Thin-bordered box, serif quotation text, small uppercase attribution with leading dash."
+  },
+  "contentPattern": {
+    "structure": "row 1: quotation paragraph; row 2 (optional): attribution paragraph (dash is added automatically)",
+    "description": "Quotation outside an interactive component: quote block with its attribution. Quotation outside an interactive component: quote block with its attribution. Its tan fill ('featured') is a colour treatment only, same variant."
+  },
+  "options": [
+    {
+      "class": "featured",
+      "label": "Featured (filled background)"
+    }
+  ],
+  "memberVariantIds": [
+    "quote-card"
+  ],
+  "usage": "Testimonial row (\"Echoes of the Extraordinary\"), placed three per section with section style quote-row.",
+  "reuseGuidance": "One block per testimonial. Add the featured option for the filled (tan) card.",
+  "sourceUrl": "https://speak-salsa-30519598.figma.site/",
+  "blockStructure": {
+    "source": "AEM Block Collection quote block (not in project library; get_block_details returned 404)",
+    "usedBy": [
+      "quote-card"
+    ],
+    "columns": 1,
+    "rows": [
+      {
+        "row": 1,
+        "cells": [
+          "Quotation paragraph"
+        ]
+      },
+      {
+        "row": 2,
+        "cells": [
+          "Attribution paragraph (optional)"
+        ]
+      }
+    ]
+  },
+  "sectionMetadata": [
+    {
+      "style": "quote-row"
+    }
+  ]
+}

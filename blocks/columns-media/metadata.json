@@ -1,0 +1,45 @@
+{
+  "variantName": "columns-media",
+  "baseBlock": "columns",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "Text column (eyebrow, H2, body, accent rule) beside a large rounded photo",
+    "description": "Text column (eyebrow, H2, body, accent rule) beside a large rounded portrait-ish photo (~608x540), image vertically centered against text. Differs from columns-intro, which is a text-only section head (H2 left, short note right) with no media."
+  },
+  "contentPattern": {
+    "structure": "one row, two cells: cell 1 eyebrow paragraph, H2, body paragraph; cell 2 image",
+    "description": "Fixed pair of different content side by side (text column and a large photo) that never wraps: Columns."
+  },
+  "options": [],
+  "memberVariantIds": [
+    "columns-media"
+  ],
+  "usage": {
+    "description": "Destination intro (\"A storied ribbon of shoreline...\") on the destinations template.",
+    "pagesUsing": [
+      "/destinations/amalfi-coast"
+    ],
+    "reuseCount": 1,
+    "lastUsed": "2026-10-30"
+  },
+  "reuseGuidance": "Use when a section pairs a text column (optional eyebrow, heading, body) with one large photo side by side. Either cell order works; the image-only cell becomes the media column. For text-only section heads use columns-intro.",
+  "sourceUrl": "https://speak-salsa-30519598.figma.site/destinations/amalfi-coast",
+  "blockStructure": {
+    "source": "get_block_details /block-collection/columns",
+    "usedBy": [
+      "columns-intro",
+      "columns-media",
+      "columns-panel"
+    ],
+    "columns": 2,
+    "rows": [
+      {
+        "row": 1,
+        "cells": [
+          "Cell 1 content (columns-intro: eyebrow + H2; columns-media: eyebrow, H2, body; columns-panel: H3 + paragraph)",
+          "Cell 2 content (columns-intro: intro paragraph; columns-media: image; columns-panel: H3 + paragraph)"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "variantName": "columns-panel",
+  "baseBlock": "columns",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "Two text columns (H3 + paragraph) in one rounded panel with a thin divider between them",
+    "description": "Two text columns (H3 + paragraph) inside a single tan rounded panel with a thin vertical divider between them, left-aligned inside a centered section. Neither columns-intro (section head, no panel) nor columns-media (text + photo) matches."
+  },
+  "contentPattern": {
+    "structure": "one row, two cells: each cell H3 + paragraph",
+    "description": "A fixed pair of different text items side by side in one panel that never wraps: Columns."
+  },
+  "options": [],
+  "memberVariantIds": [
+    "columns-panel"
+  ],
+  "usage": {
+    "description": "\"Fluidity to Match Your Pace\" panel (concierge / adaptive itineraries) on the destinations template.",
+    "pagesUsing": [
+      "/destinations/amalfi-coast"
+    ],
+    "reuseCount": 1,
+    "lastUsed": "2026-10-30"
+  },
+  "reuseGuidance": "Use for a fixed pair of short text items shown together in one panel. Section heading above stays default content. For text beside a photo use columns-media.",
+  "sourceUrl": "https://speak-salsa-30519598.figma.site/destinations/amalfi-coast",
+  "blockStructure": {
+    "source": "get_block_details /block-collection/columns",
+    "usedBy": [
+      "columns-intro",
+      "columns-media",
+      "columns-panel"
+    ],
+    "columns": 2,
+    "rows": [
+      {
+        "row": 1,
+        "cells": [
+          "Cell 1 content (columns-intro: eyebrow + H2; columns-media: eyebrow, H2, body; columns-panel: H3 + paragraph)",
+          "Cell 2 content (columns-intro: intro paragraph; columns-media: image; columns-panel: H3 + paragraph)"
+        ]
+      }
+    ]
+  },
+  "sectionMetadata": [
+    {
+      "style": "centered"
+    }
+  ]
+}

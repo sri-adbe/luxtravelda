@@ -1,0 +1,11 @@
+{
+  "type": "da",
+  "sites": {
+    "luxtravelda": {
+      "previewOrg": "sri-adbe",
+      "previewSite": "luxtravelda",
+      "contentHostUrl": "https://content.da.live/sri-adbe/luxtravelda/",
+      "libraryUrl": "https://main--sta-boilerplate--aemdemos.aem.page/tools/sidekick/library.json"
+    }
+  }
+}

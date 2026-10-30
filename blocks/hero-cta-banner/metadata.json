@@ -1,0 +1,50 @@
+{
+  "variantName": "hero-cta-banner",
+  "baseBlock": "hero",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "Short closing banner with a pale-washed background photo and dark centered eyebrow, H2, CTA and note",
+    "description": "Short banner, not full height; photo washed out by a pale overlay with dark centered text (eyebrow, H2 rather than H1, button, small note). Reusable for the destinations template closing CTA (section.amalfi-cta-section)."
+  },
+  "contentPattern": {
+    "structure": "row 1 (optional): background image; row 2: eyebrow paragraph (optional), H2, CTA link, note paragraph (optional)",
+    "description": "Background photo with overlaid eyebrow, H2, CTA and note: a hero (photo background belongs to the block)."
+  },
+  "options": [],
+  "memberVariantIds": [
+    "hero-cta-banner"
+  ],
+  "usage": {
+    "description": "Closing call-to-action section on the homepage and destinations template (amalfi-cta-section).",
+    "pagesUsing": [
+      "/index",
+      "/destinations/amalfi-coast"
+    ],
+    "reuseCount": 1,
+    "lastUsed": "2026-10-30"
+  },
+  "reuseGuidance": "Use for end-of-page CTAs over a washed-out photo with dark text. Not for the top hero (use hero-overlay).",
+  "sourceUrl": "https://speak-salsa-30519598.figma.site/",
+  "blockStructure": {
+    "source": "get_block_details /block-collection/hero",
+    "usedBy": [
+      "hero-overlay",
+      "hero-cta-banner"
+    ],
+    "columns": 1,
+    "rows": [
+      {
+        "row": 1,
+        "cells": [
+          "Background image (optional)"
+        ]
+      },
+      {
+        "row": 2,
+        "cells": [
+          "Eyebrow paragraph (optional), Title heading (H1 for top hero, H2 for closing), subheading paragraph, CTA link (buttons have no href in source; use link), optional note paragraph"
+        ]
+      }
+    ]
+  }
+}

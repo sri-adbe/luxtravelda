@@ -1,0 +1,223 @@
+/* hero-overlay: full-bleed photo, dark overlay, centered headline, subline and CTA */
+
+.hero-overlay {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  min-height: 540px;
+  overflow: hidden;
+  isolation: isolate;
+  text-align: center;
+}
+
+.hero-overlay .hero-overlay-media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+
+.hero-overlay .hero-overlay-media picture,
+.hero-overlay .hero-overlay-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.hero-overlay.hero-overlay-has-media::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(rgb(20 14 10 / 38%) 0%, rgb(20 14 10 / 55%) 100%);
+}
+
+.hero-overlay .hero-overlay-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 clamp(24px, 8vw, 120px);
+  text-align: center;
+}
+
+.hero-overlay .hero-overlay-content h1,
+.hero-overlay .hero-overlay-content h2 {
+  max-width: 900px;
+  margin: 0 0 28px;
+  color: var(--color-white);
+  font-family: var(--heading-font-family);
+  font-size: clamp(52px, 8vw, 110px);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+}
+
+.hero-overlay .hero-overlay-content p {
+  max-width: 560px;
+  margin: 0 0 44px;
+  color: rgb(255 255 255 / 78%);
+  font-family: var(--heading-font-family);
+  font-size: clamp(18px, 2vw, 26px);
+  font-style: italic;
+  letter-spacing: 0.01em;
+  line-height: 1.4;
+}
+
+/* CTA: terracotta button */
+.hero-overlay .hero-overlay-content p.hero-overlay-cta {
+  max-width: none;
+  margin: 0;
+  font-style: normal;
+}
+
+main .hero-overlay .hero-overlay-cta a:any-link {
+  display: inline-block;
+  border: 1px solid var(--color-terracotta);
+  border-radius: 0;
+  padding: 17px 36px;
+  background: var(--color-terracotta);
+  color: var(--color-cream);
+  font-family: var(--body-font-family);
+  font-size: var(--label-font-size);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1.5;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background var(--transition-base), transform var(--transition-base);
+}
+
+main .hero-overlay .hero-overlay-cta a:hover,
+main .hero-overlay .hero-overlay-cta a:focus-visible {
+  background: var(--color-rust);
+  color: var(--color-cream);
+  transform: translateY(-2px);
+}
+
+/* eyebrow: uppercase label flanked by short white rules */
+.hero-overlay .hero-overlay-content p.hero-overlay-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: none;
+  margin: 0;
+  color: var(--color-white);
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-xs);
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1.5;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.hero-overlay .hero-overlay-content p.hero-overlay-eyebrow::before,
+.hero-overlay .hero-overlay-content p.hero-overlay-eyebrow::after {
+  content: '';
+  flex-shrink: 0;
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--color-white);
+}
+
+/* entrance animation (source .hero-reveal) */
+@keyframes hero-overlay-fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-overlay .hero-overlay-content > * {
+  opacity: 0;
+  animation: 0.8s cubic-bezier(0.22, 0.6, 0.36, 1) 0.2s forwards hero-overlay-fade-up;
+}
+
+.hero-overlay .hero-overlay-content > :is(h1, h2) {
+  animation-delay: 0.5s;
+}
+
+.hero-overlay .hero-overlay-content > :is(h1, h2) + p:not(.hero-overlay-cta) {
+  animation-delay: 0.75s;
+}
+
+.hero-overlay .hero-overlay-content > .hero-overlay-cta {
+  animation-delay: 1s;
+}
+
+/* destination hero (has an eyebrow): source .amalfi-hero */
+.hero-overlay:has(.hero-overlay-eyebrow) {
+  height: 100dvh;
+  min-height: 100dvh;
+}
+
+.hero-overlay.hero-overlay-has-media:has(.hero-overlay-eyebrow)::before {
+  background: rgb(7 7 9 / 45%);
+}
+
+.hero-overlay:has(.hero-overlay-eyebrow) .hero-overlay-content {
+  gap: 32px;
+  max-width: 900px;
+  padding: 0 clamp(24px, 6vw, 80px);
+}
+
+.hero-overlay:has(.hero-overlay-eyebrow) .hero-overlay-content > * {
+  opacity: 1;
+  animation: none;
+}
+
+.hero-overlay:has(.hero-overlay-eyebrow) .hero-overlay-content :is(h1, h2) {
+  max-width: none;
+  margin: 0;
+  font-size: clamp(48px, 7vw, 80px);
+  letter-spacing: normal;
+  line-height: 1.05;
+}
+
+.hero-overlay:has(.hero-overlay-eyebrow) .hero-overlay-content p:not(.hero-overlay-eyebrow, .hero-overlay-cta) {
+  max-width: none;
+  margin: 0;
+  color: var(--color-cream);
+  font-size: clamp(20px, 2.5vw, 28px);
+  font-style: normal;
+  letter-spacing: normal;
+  opacity: 0.9;
+}
+
+.hero-overlay:has(.hero-overlay-eyebrow) .hero-overlay-content p.hero-overlay-cta {
+  padding-top: 16px;
+}
+
+main .hero-overlay:has(.hero-overlay-eyebrow) .hero-overlay-cta a:any-link {
+  border: none;
+  padding: 16px 32px;
+  color: var(--color-white);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+}
+
+main .hero-overlay:has(.hero-overlay-eyebrow) .hero-overlay-cta a:hover,
+main .hero-overlay:has(.hero-overlay-eyebrow) .hero-overlay-cta a:focus-visible {
+  color: var(--color-white);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-overlay .hero-overlay-content > * {
+    opacity: 1;
+    animation: none;
+  }
+}

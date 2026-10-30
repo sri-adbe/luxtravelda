@@ -1,0 +1,58 @@
+/* quote-card: one testimonial card; the 3-up grid is the quote-row section style */
+.quote-card {
+  box-sizing: border-box;
+  height: 100%;
+  min-height: 162px;
+  border: 1px solid var(--color-rule);
+  padding: 28px 25px 20px;
+  color: var(--text-color);
+}
+
+.quote-card.featured {
+  background-color: var(--color-tan);
+  border-color: var(--color-tan);
+}
+
+.quote-card blockquote {
+  margin: 0;
+  font-family: var(--heading-font-family);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.quote-card .quote-card-quotation p {
+  margin: 0;
+  color: var(--text-color);
+  font: inherit;
+}
+
+.quote-card .quote-card-attribution {
+  margin-top: 24px;
+  font-family: var(--body-font-family);
+  font-size: 9px;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.quote-card .quote-card-attribution p {
+  margin: 0;
+  color: var(--text-muted-color);
+  font: inherit;
+}
+
+.quote-card .quote-card-attribution cite {
+  display: block;
+  font-style: normal;
+}
+
+.quote-card .quote-card-attribution cite::before {
+  content: '\2014\00a0';
+}
+
+/* multi-paragraph quotations */
+.quote-card .quote-card-quotation p + p {
+  margin-top: 0.8em;
+}

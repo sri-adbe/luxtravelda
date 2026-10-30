@@ -1,0 +1,63 @@
+{
+  "variantName": "cards-gallery",
+  "baseBlock": "cards",
+  "canonicalModel": "collection",
+  "visualCharacteristics": {
+    "purpose": "Image-only 3-up gallery of equal rounded near-square tiles",
+    "description": "Image-only 3-up gallery of equal rounded near-square tiles (411x360) with no text per item, closed by a shared caption. cards-landscape is a 2-up grid of wide 16:10 tiles each carrying eyebrow, H3 and description; the item density, aspect and column count differ (<80%)."
+  },
+  "contentPattern": {
+    "structure": "one row per tile: one cell with an image (optional caption cell)",
+    "description": "Three look-alike images that flow in a grid: Cards (image-only items)."
+  },
+  "options": [],
+  "memberVariantIds": [
+    "cards-gallery"
+  ],
+  "usage": {
+    "description": "Gallery (\"Scenes from Amalfi\") on the destinations template; the shared caption under the grid stays default content.",
+    "pagesUsing": [
+      "/destinations/amalfi-coast"
+    ],
+    "reuseCount": 1,
+    "lastUsed": "2026-10-30"
+  },
+  "reuseGuidance": "Use for photo-only grids. Items with titles or descriptions belong in cards-landscape.",
+  "sourceUrl": "https://speak-salsa-30519598.figma.site/destinations/amalfi-coast",
+  "blockStructure": {
+    "source": "get_block_examples /block-collection/cards",
+    "usedBy": [
+      "cards-landscape",
+      "cards-numbered",
+      "cards-gallery"
+    ],
+    "withImages": {
+      "columns": 2,
+      "rowPerItem": true,
+      "cells": [
+        "Image",
+        "Eyebrow paragraph (place/country), H3 title, description paragraph, optional CTA link"
+      ],
+      "usedBy": [
+        "cards-landscape",
+        "cards-gallery"
+      ],
+      "notes": "cards-landscape: image + H3 + description (no eyebrow on this page). cards-gallery: image cell only (text cell empty/omitted)."
+    },
+    "noImages": {
+      "columns": 1,
+      "rowPerItem": true,
+      "cells": [
+        "Optional number or small icon, H3 title, description paragraph, optional arrow link"
+      ],
+      "usedBy": [
+        "cards-numbered"
+      ]
+    }
+  },
+  "sectionMetadata": [
+    {
+      "style": "centered"
+    }
+  ]
+}
