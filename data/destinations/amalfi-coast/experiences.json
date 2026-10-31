@@ -1,0 +1,92 @@
+{
+  "destination": "Amalfi Coast",
+  "country": "Italy",
+  "part": "experiences",
+  "sections": [
+    {
+      "type": "experiences",
+      "style": "tan",
+      "eyebrow": "Bespoke Experience",
+      "title": "Behind the Scenes Access",
+      "intro": "Exclusive keys to locked doors and private estates. We orchestrate moments that elevate exploration into deeply personal legacy.",
+      "items": [
+        {
+          "icon": {
+            "src": "/destinations/media_12956eb7d456671d23fa3a806ef07e45e4c8862ab.svg",
+            "alt": ""
+          },
+          "title": "After-Hours Museum tours",
+          "text": "Wander through the silent, historic galleries of Naples or the private crypt of Amalfi's St. Andrew Cathedral under private candle-light, accompanied only by a legacy curator."
+        },
+        {
+          "icon": {
+            "src": "/destinations/media_176a467555d837f13aac9a026d4aee1ec0b4528db.svg",
+            "alt": ""
+          },
+          "title": "Private Wine Tastings",
+          "text": "Sip century-old reserves on a cliffside terraced vineyard in Tramonti, guided by the estate's patriarch, pairing rare vintages with local artisanal cheeses."
+        },
+        {
+          "icon": {
+            "src": "/destinations/media_16baf6437636692133edb3417d154fb30ef2d024a.svg",
+            "alt": ""
+          },
+          "title": "VIP Festival Access",
+          "text": "Experience front-row seating at the world-renowned Ravello Music Festival, perched suspended between the sky and the sea with unparalleled acoustic clarity."
+        }
+      ]
+    },
+    {
+      "type": "stays",
+      "eyebrow": "Atelier of Slumber",
+      "title": "Thoughtful Luxury Havens",
+      "intro": "Handpicked properties designed to reflect the physical character and deep soul of their historic surroundings.",
+      "items": [
+        {
+          "image": {
+            "src": "/destinations/media_121f4ac75be1532e5bf76a8a3f046e3155caad41b.png",
+            "alt": "Cliffside Sanctuaries"
+          },
+          "title": "Cliffside Sanctuaries",
+          "text": "Boutique hotels perched dramatically on limestone ledge terraces, complete with private infinity plunge pools and lush lemon groves."
+        },
+        {
+          "image": {
+            "src": "/destinations/media_160a0f5123106e47d5f6f40cb1c9a4564d83b9e22.png",
+            "alt": "Patrician Historic Villas"
+          },
+          "title": "Patrician Historic Villas",
+          "text": "Serene private palazzos featuring timeless vaulted fresco ceilings, handcrafted mosaic tiles, and hidden gardens with vintage stone arches."
+        }
+      ]
+    },
+    {
+      "type": "feature",
+      "style": "tan",
+      "image": {
+        "src": "/destinations/media_17ed76303207d8e1357cb243fceee9bd2c22e0541.png",
+        "alt": "Traditional artisan at work"
+      },
+      "eyebrow": "Local Legacies",
+      "title": "Connect with the guardians of traditional heritage.",
+      "text": "Wander into centuries of living artistry. We arrange private, one-on-one sessions in legacy family ateliers. Learn the intricate art of majolica pottery glazing from master ceramists, explore the local coastal fish markets with top-rated regional chefs, or join a resident botanist in a private lemon garden harvest to uncover the sacred recipe of Amalfi's beloved gold elixir."
+    },
+    {
+      "type": "panel",
+      "style": "centered",
+      "eyebrow": "Seamless Harmony",
+      "title": "Fluidity to Match Your Pace",
+      "text": "A true luxury itinerary is never a static document. Whether prompted by sudden weather shifts, a fleeting seasonal harvest festival, or simply a spontaneous change of heart, your travel plan shifts effortlessly.",
+      "columns": [
+        {
+          "title": "24/7 Dedicated Concierge",
+          "text": "A dedicated Voyagé curator remains physically present on the ground to handle booking changes, adjust private transit, or secure a private catamaran charter on-the-fly."
+        },
+        {
+          "title": "Adaptive Itineraries",
+          "text": "We maintain active reservations across alternate exclusive venues to ensure you are never stranded, regardless of the dynamic pivots in your journey."
+        }
+      ]
+    }
+  ]
+}

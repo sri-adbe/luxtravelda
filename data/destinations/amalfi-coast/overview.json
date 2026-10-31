@@ -1,0 +1,31 @@
+{
+  "destination": "Amalfi Coast",
+  "country": "Italy",
+  "part": "overview",
+  "sections": [
+    {
+      "type": "hero",
+      "image": {
+        "src": "/destinations/media_1f0cd513f03f6e00e7b59ca046de280634ea66470.jpg",
+        "alt": "Amalfi Coast at sunset"
+      },
+      "eyebrow": "Amalfi Coast, Italy",
+      "title": "Where Cliffs Meet the Sea",
+      "subtitle": "And every sunset tells a timeless Italian story",
+      "cta": {
+        "label": "Talk to a Travel Advisor",
+        "href": "/contact"
+      }
+    },
+    {
+      "type": "intro",
+      "eyebrow": "The Destination",
+      "title": "A storied ribbon of shoreline where time stands beautifully still.",
+      "text": "The Amalfi Coast is more than a geographic marvel; it is an sensory symphony. Here, terracotta villages cling resolutely to sheer limestone cliffs, lemon orchards cascade in aromatic green terraces, and the deep, silent indigo of the Tyrrhenian Sea hums with legends of sirens and emperors. To experience Amalfi with Voyagé is to bypass the typical crowd and step directly into its soul.",
+      "image": {
+        "src": "/destinations/media_1512486f39a4ca090951a03896e6c25bce45ccc41.png",
+        "alt": "Amalfi coastal terrace"
+      }
+    }
+  ]
+}

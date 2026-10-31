@@ -1,0 +1,40 @@
+{
+  "destination": "Amalfi Coast",
+  "country": "Italy",
+  "part": "visit",
+  "sections": [
+    {
+      "type": "gallery",
+      "style": "centered",
+      "images": [
+        {
+          "src": "/destinations/media_1bb18feb1a491b9bacac4d24fd30444dc4d1aa10d.png",
+          "alt": "Amalfi scene"
+        },
+        {
+          "src": "/destinations/media_112fe9f8887f72b85fa3aa2adcf41694f4637e84d.png",
+          "alt": "Amalfi scene"
+        },
+        {
+          "src": "/destinations/media_1699cf91637f6818ef0a9e59ac54807dfc3ed2ffd.png",
+          "alt": "Amalfi scene"
+        }
+      ],
+      "caption": "Scenes from Amalfi — Captured with intention by our resident curatorial eyes"
+    },
+    {
+      "type": "closing",
+      "image": {
+        "src": "/destinations/media_13ee2d65d53f9c040300a890d8cb846ef73307a67.png",
+        "alt": ""
+      },
+      "eyebrow": "Begin Your Journey",
+      "title": "Ready to Experience the Amalfi Coast?",
+      "cta": {
+        "label": "Talk to a Travel Advisor",
+        "href": "/contact"
+      },
+      "note": "No obligation. No standard templates. Simply a personalized conversation to breathe life into your dreams."
+    }
+  ]
+}

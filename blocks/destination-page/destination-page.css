@@ -1,0 +1,4 @@
+/* destination-page is replaced by the sections it renders; nothing of it is shown */
+.destination-page {
+  display: none;
+}
