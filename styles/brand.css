@@ -45,8 +45,8 @@
   --heading-letter-spacing: -0.035em;
   --label-letter-spacing: 0.065em;
 
-  /* layout */
-  --content-max-width: 1280px;
+  /* layout: as on the source, content always fills the width inside the gutters */
+  --content-max-width: 100%;
   --section-gutter: clamp(24px, 6.25vw, 80px);
   --section-padding: 76px;
   --radius-s: 9px;
